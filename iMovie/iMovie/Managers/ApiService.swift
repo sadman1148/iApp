@@ -30,6 +30,27 @@ class ApiService {
         task.resume()
     }
     
+    func search(with keyword: String, complete: @escaping (Result<[Media], Error>) -> Void) {
+        guard let url = URL(
+            string: "\(Constants.API.baseUrl)\(Constants.API.searchEndpoint)\(keyword)"
+        ) else {
+            return
+        }
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            do {
+                let results = try JSONDecoder().decode(TrendingMediaResponse.self, from: data)
+                complete(.success(results.results))
+            } catch {
+                print("search error: \(error.localizedDescription)")
+                complete(.failure(error))
+            }
+        }
+        task.resume()
+    }
+    
     func getTrendingMovies(complete: @escaping (Result<[Media], Error>) -> Void) {
         fetchMedia(from: "/trending/movie/day", logLabel: "trending movies", complete: complete)
     }
@@ -48,6 +69,10 @@ class ApiService {
     
     func getTrendingShows(complete: @escaping (Result<[Media], Error>) -> Void) {
         fetchMedia(from: "/trending/tv/day", logLabel: "trending shows", complete: complete)
+    }
+    
+    func getSearchResults(for query: String, complete: @escaping (Result<[Media], Error>) -> Void) {
+        search(with: query, complete: complete)
     }
     
 }

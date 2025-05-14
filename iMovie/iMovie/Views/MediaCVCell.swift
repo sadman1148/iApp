@@ -33,7 +33,7 @@ class MediaCVCell: UICollectionViewCell {
     }
     
     func setupPoster(with url: String) {
-        guard let url = URL(string: "\(Constants.API.imageBaseUrl)/\(url)") else { return }
+        guard let url = URL(string: "\(Constants.API.imageSizedBaseUrl)/\(url)") else { return }
         posterImageView.sd_setImage(with: url, completed: nil)
     }
     

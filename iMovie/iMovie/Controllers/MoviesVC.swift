@@ -26,7 +26,7 @@ class MoviesVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         moviesTableView.register(
-            MovieCollectionTableViewCell.self,forCellReuseIdentifier:MovieCollectionTableViewCell.identifier
+            MediaCollectionTableViewCell.self,forCellReuseIdentifier:MediaCollectionTableViewCell.identifier
         )
         view.addSubview(moviesTableView)
         moviesTableView.delegate = self
@@ -97,8 +97,8 @@ extension MoviesVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = moviesTableView.dequeueReusableCell(
-            withIdentifier: MovieCollectionTableViewCell.identifier, for: indexPath
-        ) as? MovieCollectionTableViewCell else {
+            withIdentifier: MediaCollectionTableViewCell.identifier, for: indexPath
+        ) as? MediaCollectionTableViewCell else {
             return UITableViewCell()
         }
         

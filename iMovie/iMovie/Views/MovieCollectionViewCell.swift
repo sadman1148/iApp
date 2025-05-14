@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieCollectionTableViewCell: UITableViewCell {
+class MediaCollectionTableViewCell: UITableViewCell {
     
     static let identifier = "MovieCollectionTVC"
     
@@ -47,7 +47,7 @@ class MovieCollectionTableViewCell: UITableViewCell {
     
 }
 
-extension MovieCollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource{
+extension MediaCollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return media.count
